@@ -14,7 +14,7 @@ export default class SearchBar extends Component {
     // onChange is react property handles
     // https://developer.mozilla.org/en-US/docs/Web/Events/change always change
     // state calling setState!!! reactjs magic needs to run
-    return <div>
+    return <div className="search-bar">
       <input
         value={this.state.term}
         onChange={event => this.setState({term: event.target.value})}/>
