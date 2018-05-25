@@ -6,7 +6,12 @@ const VideoList = (props) => {
   // remaping data to react components
   const videoItems = props
     .videos
-    .map((video) => <VideoListItem key={video.etag} video={video}/>);
+    .map(
+      (video) => <VideoListItem
+        onVideoSelect={props.onVideoSelect}
+        key={video.etag}
+        video={video}/>
+    );
 
   // className is ReactJS attribute for css class React correctly renders arrays
   // of valid react components
