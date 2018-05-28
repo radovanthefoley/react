@@ -7,7 +7,7 @@ class BookList extends Component {
       .props
       .books
       .map(book => {
-        return <li key={book.title} className="list-group-item">{book.tittle}</li>;
+        return <li key={book.title} className="list-group-item">{book.title}</li>;
       });
   }
 
