@@ -15,9 +15,9 @@ const VideoList = (props) => {
 
   // className is ReactJS attribute for css class React correctly renders arrays
   // of valid react components
-  return <ul className="col-md-4 list-group">
+  return (<ul className="col-md-4 list-group">
     {videoItems}
-  </ul>;
+  </ul>);
 }
 
 export default VideoList;
