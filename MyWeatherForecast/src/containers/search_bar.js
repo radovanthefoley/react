@@ -17,6 +17,7 @@ export default class SearchBar extends Component {
     this.setState({term: event.target.value});
   }
 
+  // we do not need to bind this one, since we are not using 'this' in here
   onFormSubmit(event) {
     event.preventDefault();
   }
