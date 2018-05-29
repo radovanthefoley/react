@@ -1,4 +1,4 @@
-import FETCH_WEATHER from '../actions/index';
+import {FETCH_WEATHER} from '../actions/index';
 
 export default function(state = [], action) {
   // thanks to redux-promise middleware, action is intercepted if payload key is
