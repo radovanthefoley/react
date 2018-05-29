@@ -36,3 +36,42 @@ const createStore = (reducer) => {
 
 // getState(), dispatch(), and subscribe() are Redux essential functions over
 // global state tree (store)
+
+
+// ------------- -------------  TYPICAL USAGE ------------- -------------
+
+// reducer (only one in this simple case, otherwise we would combine all of them
+// together by combineReducers function before creating a store):
+const counter = (state = 0, action) => {
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1;
+    case 'DECREMENT':
+      return state - 1;
+    default:
+      // every reducer has to return original state if unknown action encountered
+      return state;
+  }
+};
+
+// store
+const store = createStore(counter);
+
+// listener/subscriber
+const render = () => {
+  document.body.innerText = store.getState();
+};
+
+// subscription
+const unsubscribe = store.subscribe(render);
+
+// action dispatch
+document.addEventListener('click', () => {
+  store.dispatch({
+    type: 'INCREMENT',
+    payload: 'whatever actula payload it is'
+  });
+});
+
+// initial render (if needed)
+render();
