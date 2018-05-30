@@ -15,6 +15,6 @@ export default class GoogleMap extends Component {
 
   render() {
     // ref is for direct reference by this.refs.map
-    return <div ref="map"/>;
+    return <div className="map" ref="map"/>;
   }
 }

@@ -25,3 +25,7 @@ a.hide-button {
 tr.hide-button:hover>td>a {
   display: block;
 }
+
+.map {
+  margin: 20px;
+}
