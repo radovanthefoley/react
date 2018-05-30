@@ -1,4 +1,4 @@
-import {FETCH_WEATHER} from '../actions/index';
+import {FETCH_WEATHER, REMOVE_WEATHER} from '../actions/index';
 
 export default function(state = [], action) {
   // thanks to redux-promise middleware, action is intercepted if payload key is
@@ -12,6 +12,8 @@ export default function(state = [], action) {
         action.payload.data, ...state
       ];
       //ES6 equivalent of: return [action.payload.data].concat(state);
+    case REMOVE_WEATHER:
+      return state.filter(weather => weather !== action.payload)
   }
   return state;
 }

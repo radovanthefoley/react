@@ -1,10 +1,22 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import Chart from '../components/chart';
 import GoogleMap from '../components/google_map';
+import {removeWeather} from '../actions/index';
 
 class WeatherList extends Component {
+  constructor(props) {
+    super(props);
+
+    // need to do this, because renderWeather is called in the context of array map
+    // function, so 'this' pointing to WeatherList would be gone
+    this.renderWeather = this
+      .renderWeather
+      .bind(this);
+  }
+
   renderWeather(cityData) {
     const name = cityData.city.name;
     const temps = cityData
@@ -20,7 +32,7 @@ class WeatherList extends Component {
     const {lon, lat} = cityData.city.coord;
 
     return (
-      <tr key={name}>
+      <tr key={name} className="hide-button">
         <td><GoogleMap lon={lon} lat={lat}/></td>
         <td>
           <Chart data={temps} color="orange" units="°C"/>
@@ -29,9 +41,13 @@ class WeatherList extends Component {
           <Chart data={pressures} color="green" units="hPa"/>
         </td>
         <td>
+          <a
+            className="btn btn-danger hide-button"
+            onClick={() => this.props.removeWeather(cityData)}>x</a>
           <Chart data={humidities} color="black" units="%"/>
         </td>
       </tr>
+
     );
   }
 
@@ -63,4 +79,10 @@ function mapStateToProps({weather}) {
 // ES6 equivalent of function mapStateToProps(state) {  return {weather:
 // state.weather}; }
 
-export default connect(mapStateToProps)(WeatherList);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    removeWeather: removeWeather
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WeatherList);
