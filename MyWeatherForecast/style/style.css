@@ -18,7 +18,7 @@ td:first-of-type, td:first-of-type>div {
 
 a.hide-button {
   position: absolute;
-  margin-left: 220px;
+  margin-left: 210px;
   display: none;
 }
 
@@ -27,5 +27,5 @@ tr.hide-button:hover>td>a {
 }
 
 .map {
-  margin: 20px;
+  padding: 20px;
 }
