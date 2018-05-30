@@ -11,7 +11,13 @@ export function fetchWeather(city) {
   // this is Promise
   const request = axios.get(url);
 
-  return {type: FETCH_WEATHER, payload: request};
+  return {
+    type: FETCH_WEATHER,
+    payload: request,
+    meta: {
+      city: city
+    }
+  };
 }
 
 export function removeWeather(weather) {

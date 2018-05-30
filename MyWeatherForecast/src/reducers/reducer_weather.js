@@ -7,10 +7,15 @@ export default function(state = [], action) {
 
   switch (action.type) {
     case FETCH_WEATHER:
-      // has to be immutable! + accumulation of all the searches
-      return [
-        action.payload.data, ...state
-      ];
+      if (action.error) {
+        alert(`City ${action.meta.city} was not found`);
+        return state;
+      } else {
+        // has to be immutable! + accumulation of all the searches
+        return [
+          action.payload.data, ...state
+        ];
+      }
       //ES6 equivalent of: return [action.payload.data].concat(state);
     case REMOVE_WEATHER:
       return state.filter(weather => weather !== action.payload)
