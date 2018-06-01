@@ -32,7 +32,7 @@ class WeatherList extends Component {
     const {lon, lat} = cityData.city.coord;
 
     return (
-      <tr key={name} className="hide-button">
+      <tr key={name}>
         <td><GoogleMap lon={lon} lat={lat}/></td>
         <td>
           <Chart data={temps} color="orange" units="°C"/>

@@ -18,10 +18,10 @@ td:first-of-type, td:first-of-type>div {
 
 a.hide-button {
   position: absolute;
-  margin-left: 210px;
   display: none;
+  margin-left: 185px;
 }
 
-tr.hide-button:hover>td>a {
+tr:hover>td>a.hide-button {
   display: block;
 }
