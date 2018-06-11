@@ -28,5 +28,22 @@ class PostsNew extends Component {
   }
 }
 
+function validate(values) {
+  const errors = {};
+
+  if (!values.title || values.title < 3) {
+    errors.title = 'Enter a title that is at least 3 characters please';
+  }
+  if (!values.categories) {
+    errors.categories = 'Enter some categories please';
+  }
+  if (!values.content) {
+    errors.content = 'Enter some content please';
+  }
+
+  // if errors is empty, redux evaluates form as valid
+  return errors;
+}
+
 // unique name for form, in case we have multiple forms...
-export default reduxForm({form: 'PostsNewForm'})(PostsNew);
+export default reduxForm({validate: validate, form: 'PostsNewForm'})(PostsNew);
