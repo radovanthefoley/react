@@ -6,11 +6,12 @@ class PostsNew extends Component {
   // field attribute is send by redux-form logic for us to manually hook it
   renderField(field) {
     // {...field.input} maps all attributes of field.input to the same keys e.g.:
-    // onBlur = field.input.onBlur
+    // onBlur = field.input.onBlur; {field.meta.error} is passed by redux based on
+    // validate function
     return (
       <div className="form-group">
         <label>{field.label}</label>
-        <input className="form-control" type="text" {...field.inpu}/>
+        <input className="form-control" type="text" {...field.inpu}/> {field.meta.error}
       </div>
     );
   }
@@ -22,7 +23,8 @@ class PostsNew extends Component {
       <form>
         <Field name="title" label="Title" component={this.renderField}/>
         <Field name="categories" label="Categories" component={this.renderField}/>
-        <Field name="contenr" label="Post Content" component={this.renderField}/>
+        <Field name="content" label="Post Content" component={this.renderField}/>
+        <button type="submit" className="btn btn-primary">Submit</button>
       </form>
     );
   }
