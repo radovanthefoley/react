@@ -11,7 +11,11 @@ class PostsNew extends Component {
     return (
       <div className="form-group">
         <label>{field.label}</label>
-        <input className="form-control" type="text" {...field.input}/> {field.meta.error}
+        <input className="form-control" type="text" {...field.input}/> {
+          field.meta.touched
+            ? field.meta.error
+            : ''
+        }
       </div>
     );
   }
@@ -42,7 +46,7 @@ class PostsNew extends Component {
 function validate(values) {
   const errors = {};
 
-  if (!values.title || values.title < 3) {
+  if (!values.title || values.title.length < 3) {
     errors.title = 'Enter a title that is at least 3 characters please';
   }
   if (!values.categories) {
