@@ -13,9 +13,11 @@ export function fetchPosts() {
   return {type: FETCH_POSTS, payload: request}
 }
 
-export function createPost(values) {
+export function createPost(values, callback) {
   console.log("fetchPosts action...");
-  const request = axios.post(`${ROOT_URL}/posts?${API_KEY}`, values);
+  const request = axios
+    .post(`${ROOT_URL}/posts?${API_KEY}`, values)
+    .then(() => callback());
   // redux-promise middleware will resolve request promise before it hits reducers
   return {type: CREATE_POST, payload: request}
 }

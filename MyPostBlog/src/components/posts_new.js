@@ -39,7 +39,7 @@ class PostsNew extends Component {
   onSubmit(values) {
     this
       .props
-      .createPost(values);
+      .createPost(values, () => this.props.history.push('/'));
   }
 
   render() {
