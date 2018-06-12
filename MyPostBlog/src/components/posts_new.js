@@ -5,17 +5,30 @@ class PostsNew extends Component {
 
   // field attribute is send by redux-form logic for us to manually hook it
   renderField(field) {
+    // ES6 advanced destructuring, meta from field (not accesible though) and
+    // touched and error from meta
+    const {
+      meta: {
+        touched,
+        error
+      }
+    } = field;
+    const className = `form-group ${touched && error
+      ? 'has-danger'
+      : ''}`;
+
     // {...field.input} maps all attributes of field.input to the same keys e.g.:
     // onBlur = field.input.onBlur; {field.meta.error} is passed by redux based on
     // validate function
     return (
-      <div className="form-group">
+      <div className={className}>
         <label>{field.label}</label>
-        <input className="form-control" type="text" {...field.input}/> {
-          field.meta.touched
-            ? field.meta.error
-            : ''
-        }
+        <input className="form-control" type="text" {...field.input}/>
+        <div className="text-help">{
+            touched
+              ? error
+              : ''
+          }</div>
       </div>
     );
   }
