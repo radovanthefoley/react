@@ -11,20 +11,29 @@ class PostsNew extends Component {
     return (
       <div className="form-group">
         <label>{field.label}</label>
-        <input className="form-control" type="text" {...field.inpu}/> {field.meta.error}
+        <input className="form-control" type="text" {...field.input}/> {field.meta.error}
       </div>
     );
   }
 
+  onSubmit(values) {
+    console.log(values);
+  }
+
   render() {
+    // handleSubmit comes from redux form (with many others)
+    const {handleSubmit} = this.props;
+    // same as: const handleSubmit = this.props.handleSubmit;
+
     return (
       // arbitrary attributes to be passed within field, here it is label; component
-      // expects function reference that return JSX
-      <form>
+      // expects function reference that return JSX; handleSubmit expects reference to
+      // function that will be called during submit
+      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <Field name="title" label="Title" component={this.renderField}/>
         <Field name="categories" label="Categories" component={this.renderField}/>
         <Field name="content" label="Post Content" component={this.renderField}/>
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <button type="submit" className="btn btn-primary">Save</button>
       </form>
     );
   }
