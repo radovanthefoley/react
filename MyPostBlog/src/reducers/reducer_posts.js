@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 import {FETCH_POSTS} from '../actions/index';
 import {FETCH_POST} from '../actions/index';
+import {DELETE_POST} from '../actions/index';
 
 export default function(state = {}, action) {
   switch (action.type) {
@@ -24,6 +25,16 @@ export default function(state = {}, action) {
           // ES6 key interpolation []
           [action.payload.data.id]: action.payload.data
         };
+      }
+    case DELETE_POST:
+      if (action.error) {
+        alert('Unable to delete post');
+        return state;
+      } else {
+        const id = action.payload;
+        const newState = _.omit(state, id);
+        console.log(newState);
+        return newState;
       }
   }
   return state;
